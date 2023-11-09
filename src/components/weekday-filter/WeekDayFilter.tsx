@@ -2,17 +2,17 @@ import { getBrazillianDate, getBrazillianNow } from '@/utils/timezone'
 import { Transition } from '@headlessui/react'
 import { DateTime } from 'luxon'
 
-type WeekDaySelect = {
+type WeekDayFilter = {
   days: { [index: string]: number }
   selectedDay: DateTime
   onSelect?: (day: DateTime) => void
 }
 
-export const WeekDaySelect = ({
+export const WeekDayFilter = ({
   days,
   selectedDay,
   onSelect,
-}: WeekDaySelect) => {
+}: WeekDayFilter) => {
   return (
     <div className='flex justify-center gap-1 border-b border-blueGray-700/30 bg-blueGray-800 pb-4'>
       {Object.keys(days).map((day) => {

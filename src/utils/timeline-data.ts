@@ -97,8 +97,10 @@ export const getTotalSlots = (data: any) => {
   const datetimeStart = getBrazillianDate(data.startAt)
   const datetimeEnd = getBrazillianDate(data.endAt)
 
-  const minutesDiff = datetimeEnd.diff(datetimeStart, "minutes").toObject().minutes
+  const minutesDiff = datetimeEnd
+    .diff(datetimeStart, 'minutes')
+    .toObject().minutes
 
-  if(!minutesDiff) return 0 
-  return minutesDiff / MINUTES_PER_SLOT 
+  if (!minutesDiff) return 0
+  return minutesDiff / MINUTES_PER_SLOT
 }

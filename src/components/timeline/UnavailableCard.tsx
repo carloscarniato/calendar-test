@@ -45,15 +45,13 @@ export const UnavailableCard = ({ event, selectedDay }: UnavailableCard) => {
       leave='transition-opacity duration-150'
       leaveFrom='opacity-100'
       leaveTo='opacity-0'
-      className='absolute left-1/4 z-20 flex w-2/3 justify-center items-center rounded-xl bg-blueGray-800/60 bg-[url("/unavailable-bg.png")] bg-[length:100%_auto] py-2 pl-4 pr-2 shadow-default bg-repeat-y'
+      className='absolute left-1/4 z-20 flex w-2/3 items-center justify-center rounded-xl bg-blueGray-800/60 bg-[url("/unavailable-bg.png")] bg-[length:100%_auto] bg-repeat-y py-2 pl-4 pr-2 shadow-default'
       style={{
         top: `${topOffset}px`,
         height: `${height}px`,
       }}
     >
-      <div
-        className=' flex flex-col items-center justify-center text-xs text-blueGray-400'
-      >
+      <div className=' flex flex-col items-center justify-center text-xs text-blueGray-400'>
         <span>Unavailable</span>
         {getTotalSlots(event) > 1 ? (
           <span>

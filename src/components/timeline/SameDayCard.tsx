@@ -1,9 +1,8 @@
 import { MINUTES_PER_SLOT, SLOT_SIZE_IN_PX } from '@/utils/constants'
+import { getTotalSlots } from '@/utils/timeline-data'
 import { getBrazillianDate, getBrazillianNow } from '@/utils/timezone'
 import { Transition } from '@headlessui/react'
-import { DateTime } from 'luxon'
 import { Avatar } from '../common/Avatar'
-import { getTotalSlots } from '@/utils/timeline-data'
 
 type SameDayCard = {
   event: any
@@ -14,7 +13,10 @@ export const SameDayCard = ({ event }: SameDayCard) => {
   const datetimeStart = getBrazillianDate(event.startAt)
   const datetimeEnd = getBrazillianDate(event.endAt)
 
-  const topOffset = SLOT_SIZE_IN_PX + SLOT_SIZE_IN_PX * (datetimeStart.hour * 4 + datetimeStart.minute / MINUTES_PER_SLOT)
+  const topOffset =
+    SLOT_SIZE_IN_PX +
+    SLOT_SIZE_IN_PX *
+      (datetimeStart.hour * 4 + datetimeStart.minute / MINUTES_PER_SLOT)
   const height = getTotalSlots(event) * SLOT_SIZE_IN_PX
 
   return (
@@ -45,14 +47,11 @@ export const SameDayCard = ({ event }: SameDayCard) => {
           <span className='text-sm'>{event.attendee.name}</span>
           <Avatar src={event.attendee.image} width={32} height={32} />
         </div>
-        {
-          getTotalSlots(event) > 1 ? (
-            <span className='text-xs'>
-              {datetimeStart.toFormat('HH:mm')} -{' '}
-              {datetimeEnd.toFormat('HH:mm')}
-            </span>
-          ) : null
-        }
+        {getTotalSlots(event) > 1 ? (
+          <span className='text-xs'>
+            {datetimeStart.toFormat('HH:mm')} - {datetimeEnd.toFormat('HH:mm')}
+          </span>
+        ) : null}
       </div>
       <div
         className={`absolute left-0 top-1/2 -translate-x-2/3 -translate-y-1/2 ${

@@ -1,9 +1,9 @@
 import { MINUTES_PER_SLOT, SLOT_SIZE_IN_PX } from '@/utils/constants'
+import { getTotalSlots } from '@/utils/timeline-data'
 import { getBrazillianDate, getBrazillianNow } from '@/utils/timezone'
 import { Transition } from '@headlessui/react'
 import { DateTime } from 'luxon'
 import { Avatar } from '../common/Avatar'
-import { getTotalSlots } from '@/utils/timeline-data'
 
 type SplitDayCard = {
   event: any
@@ -20,11 +20,17 @@ export const SplitDayCard = ({ event, selectedDay }: SplitDayCard) => {
       .minutes ?? 0) / MINUTES_PER_SLOT
   const slotsAfterMidnight = getTotalSlots(event) - slotsUntilMidnight
 
-  const topOffset = selectedDay.day === datetimeEnd.day ? SLOT_SIZE_IN_PX - 10 : SLOT_SIZE_IN_PX + SLOT_SIZE_IN_PX * (datetimeStart.hour * 4 + datetimeStart.minute / MINUTES_PER_SLOT)
+  const topOffset =
+    selectedDay.day === datetimeEnd.day
+      ? SLOT_SIZE_IN_PX - 10
+      : SLOT_SIZE_IN_PX +
+        SLOT_SIZE_IN_PX *
+          (datetimeStart.hour * 4 + datetimeStart.minute / MINUTES_PER_SLOT)
 
-  const height = selectedDay.day === datetimeEnd.day
-    ? slotsAfterMidnight * SLOT_SIZE_IN_PX + 10
-    : slotsUntilMidnight * SLOT_SIZE_IN_PX + 10
+  const height =
+    selectedDay.day === datetimeEnd.day
+      ? slotsAfterMidnight * SLOT_SIZE_IN_PX + 10
+      : slotsUntilMidnight * SLOT_SIZE_IN_PX + 10
 
   return (
     <Transition
@@ -67,13 +73,11 @@ export const SplitDayCard = ({ event, selectedDay }: SplitDayCard) => {
           </span>
         ) : null}
       </div>
-      {
-        selectedDay.day === datetimeEnd.day ? (
-          <div className='absolute -left-[1px] -top-6 z-10 box-content h-8 w-full border-x border-blueGray-700/60 bg-gradient-to-t from-blueGray-800 via-blueGray-800 to-transparent' />
-        ) : (
-          <div className='absolute -bottom-4 -left-[1px] z-10 box-content h-8 w-full border-x border-blueGray-700/60 bg-gradient-to-b from-blueGray-800 via-blueGray-800 to-transparent' />
-        )
-      }
+      {selectedDay.day === datetimeEnd.day ? (
+        <div className='absolute -left-[1px] -top-6 z-10 box-content h-8 w-full border-x border-blueGray-700/60 bg-gradient-to-t from-blueGray-800 via-blueGray-800 to-transparent' />
+      ) : (
+        <div className='absolute -bottom-4 -left-[1px] z-10 box-content h-8 w-full border-x border-blueGray-700/60 bg-gradient-to-b from-blueGray-800 via-blueGray-800 to-transparent' />
+      )}
       <div
         className={`absolute left-0 top-1/2 -translate-x-2/3 -translate-y-1/2 ${
           datetimeStart <= now ? 'grayscale' : 'grayscale-0'

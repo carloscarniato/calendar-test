@@ -1,14 +1,11 @@
 'use client'
 
 import { Header } from '@/components/header/Header'
-import { TeamFilter } from '@/components/team-filter/TeamFilter'
-import { WeekDaySelect } from '@/components/weekday-select/WeekDaySelect'
-import { Timeline } from '@/components/timeline/Timeline'
-import { getBrazillianNow } from '@/utils/timezone'
-import { useEffect, useMemo, useState } from 'react'
 import { Menu } from '@/components/menu/Menu'
+import { TeamFilter } from '@/components/team-filter/TeamFilter'
+import { Timeline } from '@/components/timeline/Timeline'
+import { WeekDayFilter } from '@/components/weekday-filter/WeekDayFilter'
 import { data } from '@/data/mock'
-import { randomBytes } from 'crypto'
 import { MINUTES_PER_SLOT } from '@/utils/constants'
 import {
   findNextAvailableSlot,
@@ -16,6 +13,9 @@ import {
   getFilteredTeam,
   getFilteredWeekDays,
 } from '@/utils/timeline-data'
+import { getBrazillianNow } from '@/utils/timezone'
+import { randomBytes } from 'crypto'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function Home() {
   const [selectedDay, setSelectedDay] = useState(getBrazillianNow())
@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <main className='flex h-screen flex-col'>
       <Header date={selectedDay} />
-      <WeekDaySelect
+      <WeekDayFilter
         selectedDay={selectedDay}
         days={filteredWeekDays}
         onSelect={(day) => setSelectedDay(day)}
