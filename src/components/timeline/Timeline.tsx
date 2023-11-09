@@ -14,7 +14,7 @@ type Timeline = {
 export const Timeline = ({ filteredEvents, selectedDay }: Timeline) => {
   const now = getBrazillianNow()
   return (
-    <div className='relative overflow-y-auto overflow-x-hidden pb-16 pt-12'>
+    <div className='relative overflow-y-auto overflow-x-hidden pb-16 pt-12 scrollbar-hide'>
       {filteredEvents.map((event: any) =>
         event.attendee ? (
           getBrazillianDate(event.startAt).day ===

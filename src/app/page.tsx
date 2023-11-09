@@ -74,7 +74,7 @@ export default function Home() {
   }
 
   return (
-    <main className='flex h-screen flex-col'>
+    <main className='relative flex m-auto max-w-sm h-screen flex-col'>
       <Header date={selectedDay} />
       <WeekDayFilter
         selectedDay={selectedDay}

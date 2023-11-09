@@ -31,7 +31,7 @@ type Menu = {
 
 export const Menu = ({ actionButtonCallback }: Menu) => {
   return (
-    <div className='fixed bottom-0 left-0 z-50 w-full'>
+    <div className='absolute bottom-0 left-0 z-50 w-full max-w-sm m-auto'>
       <Transition
         appear={true}
         show={true}
@@ -56,7 +56,7 @@ export const Menu = ({ actionButtonCallback }: Menu) => {
         leaveFrom='opacity-100'
         leaveTo='opacity-0'
       >
-        <div className='flex h-16 w-full items-center border-t border-blueGray-700/30 bg-blueGray-800/95 backdrop-blur lg:static lg:h-auto lg:w-auto lg:bg-none'>
+        <div className='flex h-16 w-full items-center border-t border-blueGray-700/30 bg-blueGray-800/95 backdrop-blur'>
           {items.map((item) => (
             <MenuItem key={item.name} name={item.name} icon={item.icon} />
           ))}
