@@ -70,6 +70,7 @@ export default function Home() {
     })
     setUpdatedData([...updatedEvents])
     setSelectedDay(getBrazillianNow())
+    setSelectedTeammate(undefined)
   }
 
   return (
